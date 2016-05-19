@@ -7,22 +7,26 @@ I am not a system admin and this is mostly shared so I can discuss and learn. I 
 
 ## Requirements
 Only tested on CentOS Digital Ocean 7.0 by me. See https://github.com/geerlingguy for complete references and for information on additional platforms. 
-Remember to set your server IPs inside the inventory directory to point to your server. 
+Remember to set your server IPs inside the inventory directory to point to your servers. 
 
 ## Commands
 
-Deploy on all servers
+Deploy on all servers:
+
 ansible-playbook site.yml
 
-
 Deploy on management servers:
+
 ansible-playbook site.yml -i inventories/management_servers 
 
 Deploy on management servers:
+
 ansible-playbook site.yml -i inventories/database_servers
 
 Deploy on staging servers:
+
 ansible-playbook site.yml -i inventories/staging_servers 
 
-Deploy on production servers
+Deploy on production servers:
+
 ansible-playbook site.yml -i inventories/production_servers
