@@ -1,0 +1,6 @@
+[traffic]
+prd1.example.com
+# Set this as your traffic server IPs
+
+[production:children]
+traffic

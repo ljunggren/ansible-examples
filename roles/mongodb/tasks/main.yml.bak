@@ -1,0 +1,32 @@
+---
+
+- name: Make sure Python SELinux bindinds are installed
+  yum: pkg=libselinux-python state=installed
+
+- name: Check to see if SELinux is installed
+  stat: path=/etc/selinux/config
+  register: seconf
+
+
+- name: Disable SELinux
+  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+  when: seconf.stat.exists is defined and seconf.stat.exists == true
+
+
+- name: add 10gen repo file
+  template: src=repo.j2 dest=/etc/yum.repos.d/10gen.repo
+  tags: mongodb
+
+- name: install mongodb
+  yum: name=mongo-10gen-server state=present
+  tags: mongodb
+
+- name: configure mongodb
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf
+
+- name: run mongodb
+  service: name=mongod state=started enabled=yes
+  tags: mongodb
+
+- name: Set mongo server to start at boot
+  service: name=mongod state=started enabled=yes

@@ -1,0 +1,6 @@
+[mgmt]
+mgmt1.example.com
+# Set this as your management server IPs
+
+[management:children]
+mgmt

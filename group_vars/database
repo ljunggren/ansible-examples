@@ -1,0 +1,3 @@
+---
+db_path: /var/lib/mongo
+log_path: /var/log/mongodb

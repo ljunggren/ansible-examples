@@ -1,0 +1,6 @@
+[traffic]
+stg1.example.com
+# Set this as your staging server IPs
+
+[staging:children]
+traffic

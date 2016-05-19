@@ -1,0 +1,2 @@
+# Production configuration
+node_env: production 

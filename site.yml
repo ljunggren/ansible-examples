@@ -1,0 +1,35 @@
+---
+- name: This is a play at the top level of a file
+  hosts: all
+  remote_user: root
+  tasks:
+  - name: Test out some simple debug output for all environments
+    tags: foo
+    shell: echo "Simple output..."
+
+
+- name: Install nginx and NodeJS on traffic servers
+  hosts: traffic
+  remote_user: root
+  roles:
+    - common
+    - nginx
+    - nodejs
+
+- name: Install WordPress, MySQL, Nginx, and PHP-FPM
+  hosts: management
+  remote_user: root
+  roles:
+    - common
+    - fail2ban
+    - mariadb
+    - nginx
+    - php-fpm
+    - wordpress
+
+- name: Install Mongo db servers
+  hosts: database
+  remote_user: root
+  sudo: yes
+  roles:
+    - mongodb

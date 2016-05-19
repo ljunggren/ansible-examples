@@ -1,0 +1,14 @@
+---
+- name: Set up the Nodesource RPM directory for Node.js > 0.10.
+  set_fact:
+    nodejs_rhel_rpm_dir: "pub_{{ nodejs_version }}"
+
+# https://rpm.nodesource.com/pub_5.x/el/7/x86_64/nodejs-5.9.1-1nodesource.el7.centos.x86_64.rpm 
+
+- name: Add Nodesource repositories for Node.js.
+  yum:
+    name: "https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm"
+    state: present
+
+- name: Ensure Node.js and npm are installed.
+  yum: "name=nodejs state=latest enablerepo='epel,nodesource'"

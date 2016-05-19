@@ -1,0 +1,6 @@
+[db]
+db1.example.com
+# Set this as your database server IPs
+
+[database:children]
+db
